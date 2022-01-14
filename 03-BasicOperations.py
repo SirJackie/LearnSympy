@@ -17,7 +17,14 @@ import sympy as sp
 # print(expr1)
 # print(expr2)
 
-# SYMPY-fy AKA sp.sympify()
-strExpr = "(x + 1) ** 2"
-expr = sp.sympify(strExpr)
-print(expr)
+# # SYMPY-fy AKA sp.sympify()
+# strExpr = "(x + 1) ** 2"
+# expr = sp.sympify(strExpr)
+# print(expr)
+
+# sp.evalf() to evaluate the expressions into float number
+x = sp.symbols("x")
+expr = (x + 1) ** 2
+print(expr.subs(x, 1).evalf())
+print(sp.pi.evalf())
+print(sp.pi.evalf(100))

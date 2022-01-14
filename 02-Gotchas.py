@@ -13,16 +13,19 @@ import sympy as sp
 # expr = sp.Eq(x + 1, 4)
 # print(expr)
 
-# Check whether a == b
-x = sp.symbols("x")
-expr1 = (x + 1) ** 2
-expr2 = x**2 + 2*x + 1
-print(expr1, "---;---", expr2)
+# # Check whether a == b
+# x = sp.symbols("x")
+# expr1 = (x + 1) ** 2
+# expr2 = x**2 + 2*x + 1
+# print(expr1, "---;---", expr2)
+#
+# # Method 1: Just check if a-b=0, need to use sp.simplify()
+# expr3 = expr1 - expr2
+# expr4 = sp.simplify(expr3)
+# print(expr4)
+#
+# # Method 2: expr.equals(expr)
+# print(expr3.equals(expr4))
 
-# Method 1: Just check if a-b=0, need to use sp.simplify()
-expr3 = expr1 - expr2
-expr4 = sp.simplify(expr3)
-print(expr4)
-
-# Method 2: expr.equals(expr)
-print(expr3.equals(expr4))
+print(type(sp.Integer(1) + 1))
+print(type(1 + 1))

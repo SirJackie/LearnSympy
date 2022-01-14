@@ -35,3 +35,9 @@ import sympy as sp
 print(1/2)
 print(sp.Integer(1) / sp.Integer(2))
 print(sp.Rational(1, 2))
+
+# Pitfall when using division inside a large symbolic expression
+x = sp.symbols("x")
+print(x + 1/2)
+print(x + sp.Integer(1) / sp.Integer(2))
+print(x + sp.Rational(1, 2))

@@ -27,5 +27,11 @@ import sympy as sp
 # # Method 2: expr.equals(expr)
 # print(expr3.equals(expr4))
 
-print(type(sp.Integer(1) + 1))
-print(type(1 + 1))
+# # Sympy v.s. Python's Types
+# print(type(sp.Integer(1) + 1))
+# print(type(1 + 1))
+
+# Rational Division v.s. Float Division
+print(1/2)
+print(sp.Integer(1) / sp.Integer(2))
+print(sp.Rational(1, 2))

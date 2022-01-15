@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+
+<html>
+  
+<!-- Mirrored from docs.sympy.org/latest/modules/utilities/pkgdata.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Jan 2022 03:28:14 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>PKGDATA &#8212; SymPy 1.9 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/default.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../live.sympy.org/static/live-core.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../live.sympy.org/static/live-autocomplete.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../live.sympy.org/static/live-sphinx.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../../../live.sympy.org/static/utilities.js"></script>
+    <script src="../../../../live.sympy.org/static/external/classy.js"></script>
+    <script src="../../../../live.sympy.org/static/live-core.js"></script>
+    <script src="../../../../live.sympy.org/static/live-autocomplete.js"></script>
+    <script src="../../../../live.sympy.org/static/live-sphinx.js"></script>
+    
+    <link rel="shortcut icon" href="../../_static/sympy-notailtext-favicon.ico"/>
+    <link href="pkgdata.html" rel="canonical" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Source Code Inspection" href="source.html" />
+    <link rel="prev" title="Miscellaneous" href="misc.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="source.html" title="Source Code Inspection"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="misc.html" title="Miscellaneous"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SymPy 1.9 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >SymPy Modules Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Utilities</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="#">PKGDATA</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-sympy.utilities.pkgdata">
+<span id="pkgdata"></span><h1>PKGDATA<a class="headerlink" href="#module-sympy.utilities.pkgdata" title="Permalink to this headline">¶</a></h1>
+<p>pkgdata is a simple, extensible way for a package to acquire data file
+resources.</p>
+<p>The getResource function is equivalent to the standard idioms, such as
+the following minimal implementation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">getResource</span><span class="p">(</span><span class="n">identifier</span><span class="p">,</span> <span class="n">pkgname</span><span class="o">=</span><span class="vm">__name__</span><span class="p">):</span>
+    <span class="n">pkgpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">pkgname</span><span class="p">]</span><span class="o">.</span><span class="vm">__file__</span><span class="p">)</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pkgpath</span><span class="p">,</span> <span class="n">identifier</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When a __loader__ is present on the module given by __name__, it will defer
+getResource to its get_data implementation and return it as a file-like
+object (such as StringIO).</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="sympy.utilities.pkgdata.get_resource">
+<span class="sig-prename descclassname"><span class="pre">sympy.utilities.pkgdata.</span></span><span class="sig-name descname"><span class="pre">get_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pkgname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sympy.utilities.pkgdata'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/sympy/sympy/blob/00d6469eafdd4aac346a0b598184c15f2560dbe5/sympy/utilities/pkgdata.py#L25-L56"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sympy.utilities.pkgdata.get_resource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Acquire a readable object for a given package name and identifier.
+An IOError will be raised if the resource can not be found.</p>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mydata</span> <span class="o">=</span> <span class="n">get_resource</span><span class="p">(</span><span class="s1">&#39;mypkgdata.jpg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Note that the package name must be fully qualified, if given, such
+that it would be found in sys.modules.</p>
+<p>In some cases, getResource will return a real file object.  In that
+case, it may be useful to use its name attribute to get the path
+rather than use it as a file-like object.  For example, you may
+be handing data off to a C API.</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/sympylogo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="misc.html"
+                        title="previous chapter">Miscellaneous</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="source.html"
+                        title="next chapter">Source Code Inspection</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/modules/utilities/pkgdata.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://docs.sympy.org/latest/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="source.html" title="Source Code Inspection"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="misc.html" title="Miscellaneous"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SymPy 1.9 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >SymPy Modules Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Utilities</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="#">PKGDATA</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021 SymPy Development Team.
+      Last updated on Sep 30, 2021.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
+    </div>
+  </body>
+
+<!-- Mirrored from docs.sympy.org/latest/modules/utilities/pkgdata.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Jan 2022 03:28:14 GMT -->
+</html>

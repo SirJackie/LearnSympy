@@ -73,6 +73,11 @@ sp.init_printing(use_unicode=True)
 # sp.pprint(sp.zeros(2, 3))
 # sp.pprint(sp.zeros(3, 2))
 
-# Ones Matrix
-sp.pprint(sp.ones(2, 3))
-sp.pprint(sp.ones(4))
+# # Ones Matrix
+# sp.pprint(sp.ones(2, 3))
+# sp.pprint(sp.ones(4))
+
+# Access Individual Element
+M = sp.Matrix([[1, 2, 3], [2, 3, 4], [3, 4, 5]])
+sp.pprint(M)
+print(M.col(1)[0])
